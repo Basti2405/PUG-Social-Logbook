@@ -4,7 +4,7 @@
 
 ```
 PugLog/                     Kern  – Logbuch, Speicher, Fenster, Modulsystem
-PugLog_LFGHighlighter/      Modul – Hinweis im Gruppenfinder
+PugLog_LFGHighlighter/      Modul – Hinweis im Group Finder
 PugLog_CommunityShare/      Modul – Teilen in einer festen Gruppe
 ```
 
@@ -23,7 +23,7 @@ eine Haltung:
    geschrieben, in einer Sprache, die nur für einen selbst gemeint war.
    Geteilt werden — wenn überhaupt — Merkmale und eine Bewertung.
 3. **Die Bewertung vergibt der Mensch.** Ein Addon, das aus Kampfdaten
-   „guter Spieler" ableitet, misst in Wahrheit Ausrüstung und Tagesform.
+   „guter Spieler" ableitet, misst in Wahrheit Gear und Tagesform.
    Deshalb: eine Zahl von 1 bis 5, ohne vorgegebene Bedeutung, nie
    automatisch.
 4. **Es wird nur festgehalten, was der Spieler ohnehin gesehen hat.**

@@ -5,7 +5,7 @@
 Das Logbuch ist **funktionsfähig**, nicht nur skizziert:
 
 - Gruppe erkennen (ohne einen selbst; fremder Realm bleibt am Namen).
-- Begegnung festhalten, mit Ort und Schlüsselsteinstufe.
+- Begegnung festhalten, mit Ort und Keystonestufe.
 - Notiz setzen und wieder entfernen (eine geleerte Notiz wird entfernt, nicht
   als Leertext behalten — sonst sieht ein Eintrag „notiert" aus, an dem
   nichts steht).

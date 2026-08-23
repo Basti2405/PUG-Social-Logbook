@@ -2,6 +2,8 @@
 
 **Ein privates Notizbuch über die Leute, mit denen man unterwegs war.**
 
+*[English version](README.en.md)*
+
 > Der Kern heißt im AddOns-Verzeichnis **PugLog**, der Slash-Befehl ist
 > `/pug`.
 

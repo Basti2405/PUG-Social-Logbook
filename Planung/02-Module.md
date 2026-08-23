@@ -1,11 +1,11 @@
 # Module
 
-## LFGHighlighter — Hinweis im Gruppenfinder
+## LFGHighlighter — Hinweis im Group Finder
 
 **Zweck.** Beim Durchsehen der Bewerber sofort sehen, zu wem schon ein
 Eintrag vorliegt.
 
-**Die harte Grenze:** Der Gruppenfinder ist **geschützter Bereich**. Wer
+**Die harte Grenze:** Der Group Finder ist **geschützter Bereich**. Wer
 Bewerber automatisch sortiert, annimmt oder ablehnt, greift in geschützte
 Abläufe ein — das ist nicht erlaubt und bräche beim ersten Patch.
 
@@ -13,7 +13,7 @@ Dieses Modul **zeigt** deshalb nur etwas an: eine Markierung an einer Zeile,
 die es ohnehin schon gibt. Entschieden wird weiterhin vom Menschen.
 
 Aus demselben Grund heißt der Haken `Kurzhinweis` und liefert **nicht** die
-Notiz: Im Gruppenfinder ist kein Platz, und eine Notiz über einen Menschen
+Notiz: Im Group Finder ist kein Platz, und eine Notiz über einen Menschen
 gehört nicht beiläufig in eine Liste. Bewertung, Merkmale, Anzahl der
 Begegnungen — mehr nicht.
 
