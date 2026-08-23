@@ -25,7 +25,7 @@ keine Funktionsliste, sondern vier Festlegungen:
 2. **Freitext wird nie geteilt.** Eine Notiz ist für einen selbst
    geschrieben. Geteilt werden — wenn überhaupt — Merkmale und Bewertung.
 3. **Die Bewertung vergibt der Mensch.** Kein Ableiten aus Kampfdaten: Wer
-   das tut, misst Ausrüstung und Tagesform.
+   das tut, misst Gear und Tagesform.
 4. **Festgehalten wird nur, was man ohnehin gesehen hat.**
 
 ## Befehle
@@ -38,7 +38,7 @@ keine Funktionsliste, sondern vier Festlegungen:
 | `/pug rate <Name> 1-5` | Bewerten (ohne Zahl = entfernen) |
 | `/pug doctor` | Selbstdiagnose |
 
-Erfasst wird am **Ende** eines Laufs — bei abgeschlossenem Schlüsselstein,
+Erfasst wird am **Ende** eines Laufs — bei abgeschlossenem Keystone,
 gewonnenem Bosskampf oder beim Auflösen der Gruppe. Wer beim Betreten
 erfasst, hält die fest, die gleich wieder gehen, und verpasst die, die
 nachrücken.
@@ -47,13 +47,13 @@ nachrücken.
 
 ```
 PugLog/                     Kern
-PugLog_LFGHighlighter/      Modul – Hinweis im Gruppenfinder
+PugLog_LFGHighlighter/      Modul – Hinweis im Group Finder
 PugLog_CommunityShare/      Modul – Teilen in fester Gruppe (siehe Planung)
 ```
 
 ## Was es *nicht* kann
 
-- **Bewerber automatisch sortieren oder ablehnen.** Der Gruppenfinder ist
+- **Bewerber automatisch sortieren oder ablehnen.** Der Group Finder ist
   geschützter Bereich. Das Modul *zeigt* einen Hinweis, entschieden wird vom
   Menschen.
 - **Umbenennungen und Transfers nachvollziehen.** Der Schlüssel ist
