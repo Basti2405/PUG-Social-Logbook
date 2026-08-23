@@ -111,7 +111,7 @@ ul.klar li strong { color: var(--ink); }
 <div class="held huelle">
   <span class="marke" lang="de">Logbuch läuft · 0.1.0</span><span class="marke" lang="en">Logbook works · 0.1.0</span>
   <h1 lang="de">Ein privates Notizbuch über Mitspieler</h1><h1 lang="en">A private notebook about the people you play with</h1>
-  <p class="gross" lang="de">Die Gruppensuche bietet keinerlei Kontext über frühere Begegnungen. Dieses Addon merkt sich, wer dabei war — und lässt einen selbst dazuschreiben, was man sich merken will.</p>
+  <p class="gross" lang="de">Der Group Finder bietet keinerlei Kontext über frühere Begegnungen. Dieses Addon merkt sich, wer dabei war — und lässt einen selbst dazuschreiben, was man sich merken will.</p>
   <p class="gross" lang="en">The group finder offers no context about people you have met before. This add-on remembers who was there — and lets you add what you want to remember.</p>
   <div class="warnung">
     <p lang="de" style="margin:0"><strong>Stand: Logbuch funktioniert, Oberfläche fehlt.</strong> Erfassen, notieren, mit Merkmalen versehen und bewerten <strong>funktioniert und ist getestet</strong> — 33 Logiktests, alle grün —, bisher aber nur über Slash-Befehle. Die anklickbare Oberfläche ist der nächste Schritt.</p>
@@ -123,7 +123,7 @@ ul.klar li strong { color: var(--ink); }
   <p lang="de">Mehrere eigenst&auml;ndige Addons in einem Repository. Jedes Modul tr&auml;gt <code>## Dependencies: PugLog</code> und l&auml;sst sich <strong>einzeln abw&auml;hlen</strong> &ndash; wer es nicht braucht, hat seinen Quelltext nicht im Speicher.</p>
   <p lang="en">Several standalone add-ons in one repository. Each module declares <code>## Dependencies: PugLog</code> and can be <strong>disabled individually</strong> &ndash; what you do not need is not loaded.</p>
   <pre>PugLog/                     Kern  – Logbuch, Speicher, Fenster
-PugLog_LFGHighlighter/      Modul – Hinweis im Gruppenfinder
+PugLog_LFGHighlighter/      Modul – Hinweis im Group Finder
 PugLog_CommunityShare/      Modul – Teilen in fester Gruppe</pre>
   <p lang="de">Der Kern kennt <strong>kein Modul namentlich</strong>. Er ruft nur Haken auf; wer sich angemeldet hat, wird gefragt. Ein Modul, das seine Voraussetzung nicht findet oder in einem Haken wirft, wird stillgelegt &ndash; nicht der Kern.</p>
   <p lang="en">The core knows <strong>no module by name</strong>. It only calls hooks. A module that fails its check, or throws inside a hook, is disabled &ndash; the core is not.</p>
@@ -133,7 +133,7 @@ PugLog_CommunityShare/      Modul – Teilen in fester Gruppe</pre>
   <div class="raster">
     <div class="karte">
       <h4 lang="de">Erfasst wird am Ende</h4><h4 lang="en">Recorded at the end</h4>
-      <p lang="de">Bei abgeschlossenem Schlüsselstein, gewonnenem Bosskampf oder beim Auflösen der Gruppe. Wer beim Betreten erfasst, hält die fest, die gleich wieder gehen — und verpasst die, die nachrücken.</p><p lang="en">On a completed keystone, a won boss fight, or when the group breaks up. Recording on entry captures those who leave right away and misses those who join later.</p>
+      <p lang="de">Bei abgeschlossenem Keystone, gewonnenem Bosskampf oder beim Auflösen der Gruppe. Wer beim Betreten erfasst, hält die fest, die gleich wieder gehen — und verpasst die, die nachrücken.</p><p lang="en">On a completed keystone, a won boss fight, or when the group breaks up. Recording on entry captures those who leave right away and misses those who join later.</p>
     </div>
     <div class="karte">
       <h4 lang="de">Notiz, Merkmale, Bewertung</h4><h4 lang="en">Note, tags, rating</h4>
@@ -165,7 +165,7 @@ PugLog_CommunityShare/      Modul – Teilen in fester Gruppe</pre>
   <ul class="klar">
     <li lang="de"><strong>Es bewertet niemanden von selbst.</strong> Ein Addon, das aus Kampfdaten „guter Spieler“ ableitet, misst in Wahrheit Ausrüstung und Tagesform. Wer bewertet, tut das selbst — dann weiß er auch, was er gemeint hat.</li>
     <li lang="en"><strong>It never rates anyone automatically.</strong> An add-on deriving “good player” from combat data really measures gear and daily form. Whoever rates, rates themselves — and then knows what they meant.</li>
-    <li lang="de"><strong>Es sortiert keine Bewerber.</strong> Der Gruppenfinder ist geschützter Bereich. Das Modul <em>zeigt</em> einen Hinweis; entschieden wird vom Menschen.</li>
+    <li lang="de"><strong>Es sortiert keine Bewerber.</strong> Der Group Finder ist geschützter Bereich. Das Modul <em>zeigt</em> einen Hinweis; entschieden wird vom Menschen.</li>
     <li lang="en"><strong>It does not sort applicants.</strong> The group finder is protected. The module <em>displays</em> a hint; the decision stays with the person.</li>
     <li lang="de"><strong>Freitext wird nie geteilt.</strong> Eine Notiz ist für einen selbst geschrieben, in einer Sprache, die nur für einen selbst gemeint war. Geteilt werden — wenn überhaupt — Merkmale und Bewertung.</li>
     <li lang="en"><strong>Free text is never shared.</strong> A note is written for yourself, in wording meant only for yourself. What may be shared — if anything — are tags and a rating.</li>
