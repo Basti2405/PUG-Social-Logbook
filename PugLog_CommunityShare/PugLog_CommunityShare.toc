@@ -1,0 +1,17 @@
+## Interface: 120100
+
+## Title: Pug Log |cffb98cff[Community Share]|r
+## Notes: Optional exchange of recommendations within a fixed group - never automatic, never the private notes.
+## Notes-deDE: Optionaler Austausch von Empfehlungen in einer festen Gruppe - nie automatisch, nie die privaten Notizen.
+## Author: Basti2405
+## Version: 0.1.0
+## IconTexture: Interface\Icons\INV_Misc_GroupNeedMore
+
+## Dependencies: PugLog
+
+## X-License: MIT
+## X-Category: Group
+
+Locales\enUS.lua
+Locales\deDE.lua
+Modul.lua

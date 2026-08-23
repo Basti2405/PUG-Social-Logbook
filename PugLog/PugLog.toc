@@ -1,0 +1,42 @@
+## Interface: 120100
+# Passt zu Live-Patch 12.1.0 (Midnight).
+
+## Title: Pug Log
+## Notes: A private notebook about the people you group with: notes, tags and a rating, kept on your own machine.
+## Notes-deDE: Ein privates Notizbuch ueber die Leute, mit denen man unterwegs war: Notizen, Merkmale und eine Bewertung - auf dem eigenen Rechner.
+## Author: Basti2405
+## Version: 0.1.0
+## IconTexture: Interface\Icons\INV_Misc_Book_09
+
+# Account-weit, und das ist der Punkt: Wer einem auf dem Magier unangenehm
+# aufgefallen ist, soll auch auffallen, wenn man mit dem Priester unterwegs
+# ist.
+## SavedVariables: PugLogDB
+
+## X-License: MIT
+## X-Category: Group
+
+# ---------------------------------------------------------------------------
+# Ladereihenfolge. Kompat zuerst - legt den globalen Namensraum an, ohne den
+# Sprachdateien und Module ins Leere greifen.
+# ---------------------------------------------------------------------------
+
+Logik\Kompat.lua
+
+Locales\enUS.lua
+Locales\deDE.lua
+
+Logik\Speicher.lua
+
+# Das eigentliche Notizbuch. Braucht den Speicher, sonst nichts.
+Logik\Logbuch.lua
+
+# Muss VOR den Modul-Addons stehen; das sichert  ## Dependencies: PugLog .
+Logik\Modulsystem.lua
+
+# Beantwortet  /pug doctor .
+Logik\Diagnose.lua
+
+UI\Fenster.lua
+
+Core.lua

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Pug Log">
+  <!-- Aufgeschlagenes Buch: das Notizbuch. -->
+  <rect width="64" height="64" rx="14" fill="#191622"/>
+  <path d="M12 18c6-3 12-3 20 1v29c-8-4-14-4-20-1z" fill="none" stroke="#b98cff" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M52 18c-6-3-12-3-20 1v29c8-4 14-4 20-1z" fill="none" stroke="#b98cff" stroke-width="3" stroke-linejoin="round"/>
+  <circle cx="44" cy="42" r="4" fill="#f5c15a"/>
+</svg>

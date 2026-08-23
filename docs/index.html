@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="de" data-lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PUG- &amp; Social-Logbook — ein privates Notizbuch über Mitspieler</title>
+<meta name="description" content="WoW-Addon: privates Logbuch über Mitspieler aus Dungeons und Raids — Notizen, Merkmale, Bewertung. Bleibt lokal.">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<style>
+/* --------------------------------------------------------------------------
+   Pug Log - Projektseite
+
+   Bewusst ohne Schriften aus dem Netz: Die Seite soll auch dann vollstaendig
+   aussehen, wenn sie aus einem privaten Repository heraus lokal geoeffnet
+   wird - und eine Schriftart, die nachgeladen werden muss, ist eine
+   Abhaengigkeit, die genau dann fehlt.
+   -------------------------------------------------------------------------- */
+:root {
+  --grund:      #100e16;
+  --panel:      #191622;
+  --linie:      #33302b;
+  --ink:        #ece6dd;
+  --ink-leise:  #9a9086;
+  --akzent:     #b98cff;
+  --akzent2:    #f5c15a;
+  --display: ui-serif, Georgia, "Times New Roman", serif;
+  --body:    system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono:    ui-monospace, "Cascadia Code", "Consolas", monospace;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; background: var(--grund); color: var(--ink);
+  font: 400 17px/1.68 var(--body); -webkit-font-smoothing: antialiased;
+}
+/* Sprachumschaltung. Ohne JavaScript bleibt Deutsch stehen. */
+:root[data-lang="de"] [lang="en"] { display: none !important; }
+:root[data-lang="en"] [lang="de"] { display: none !important; }
+a { color: var(--akzent); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--akzent); outline-offset: 3px; }
+.huelle { width: min(1000px, 100% - 3rem); margin-inline: auto; }
+
+.kopf { display: flex; align-items: center; gap: 1rem; padding: 1.5rem 0; border-bottom: 1px solid var(--linie); }
+.kopf img { width: 40px; height: 40px; }
+.wortmarke { font: 700 1.25rem/1 var(--display); letter-spacing: .01em; }
+.sprache { margin-left: auto; display: flex; gap: .25rem; }
+.sprache button {
+  font: 500 .8rem var(--mono); color: var(--ink-leise); background: none;
+  border: 1px solid var(--linie); border-radius: 6px; padding: .3rem .6rem; cursor: pointer;
+}
+.sprache button:hover { color: var(--ink); border-color: var(--akzent); }
+
+.held { padding: 4rem 0 3rem; border-bottom: 1px solid var(--linie); }
+.held h1 { font: 700 clamp(2rem, 5vw, 3rem)/1.1 var(--display); margin: 0 0 1rem; }
+.held p.gross { font-size: 1.2rem; color: var(--ink-leise); max-width: 60ch; margin: 0 0 1.5rem; }
+
+.marke {
+  display: inline-block; font: 500 .75rem/1 var(--mono); letter-spacing: .1em;
+  text-transform: uppercase; color: var(--akzent2);
+  border: 1px solid var(--akzent2); border-radius: 999px; padding: .4rem .8rem; margin-bottom: 1.5rem;
+}
+.warnung {
+  border-left: 3px solid var(--akzent2); background: var(--panel);
+  padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; font-size: .95rem;
+}
+.warnung strong { color: var(--akzent2); }
+
+section { padding: 3rem 0; border-bottom: 1px solid var(--linie); }
+h2 { font: 700 1.6rem/1.2 var(--display); margin: 0 0 1.5rem; }
+h3 { font: 600 1.1rem/1.3 var(--body); margin: 2rem 0 .5rem; color: var(--akzent); }
+
+.raster { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+.karte { background: var(--panel); border: 1px solid var(--linie); border-radius: 10px; padding: 1.25rem; }
+.karte h4 { font: 600 1rem var(--body); margin: 0 0 .5rem; color: var(--akzent); }
+.karte p { margin: 0; font-size: .93rem; color: var(--ink-leise); }
+.karte code { font: .85rem var(--mono); color: var(--akzent2); }
+
+pre {
+  background: var(--panel); border: 1px solid var(--linie); border-radius: 10px;
+  padding: 1.1rem; overflow-x: auto; font: .85rem/1.6 var(--mono); color: var(--ink);
+}
+code { font-family: var(--mono); font-size: .9em; }
+p code, li code { background: var(--panel); padding: .12em .4em; border-radius: 4px; color: var(--akzent2); }
+
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .93rem; }
+th, td { text-align: left; padding: .6rem .8rem; border-bottom: 1px solid var(--linie); vertical-align: top; }
+th { font: 600 .8rem var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--ink-leise); }
+td code { color: var(--akzent2); }
+
+ul.klar { list-style: none; padding: 0; }
+ul.klar li { padding-left: 1.5rem; position: relative; margin-bottom: .75rem; color: var(--ink-leise); }
+ul.klar li::before { content: "\2013"; position: absolute; left: 0; color: var(--akzent); }
+ul.klar li strong { color: var(--ink); }
+
+.fuss { padding: 2.5rem 0 4rem; color: var(--ink-leise); font-size: .9rem; }
+.fuss a { color: var(--ink-leise); }
+
+</style>
+</head>
+<body>
+<header class="kopf huelle">
+  <img src="logo.svg" alt="">
+  <span class="wortmarke">Pug Log</span>
+  <div class="sprache">
+    <button type="button" data-setzt="de">DE</button>
+    <button type="button" data-setzt="en">EN</button>
+  </div>
+</header>
+<main>
+<div class="held huelle">
+  <span class="marke" lang="de">Logbuch läuft · 0.1.0</span><span class="marke" lang="en">Logbook works · 0.1.0</span>
+  <h1 lang="de">Ein privates Notizbuch über Mitspieler</h1><h1 lang="en">A private notebook about the people you play with</h1>
+  <p class="gross" lang="de">Die Gruppensuche bietet keinerlei Kontext über frühere Begegnungen. Dieses Addon merkt sich, wer dabei war — und lässt einen selbst dazuschreiben, was man sich merken will.</p>
+  <p class="gross" lang="en">The group finder offers no context about people you have met before. This add-on remembers who was there — and lets you add what you want to remember.</p>
+  <div class="warnung">
+    <p lang="de" style="margin:0"><strong>Stand: Logbuch funktioniert, Oberfläche fehlt.</strong> Erfassen, notieren, mit Merkmalen versehen und bewerten <strong>funktioniert und ist getestet</strong> — 33 Logiktests, alle grün —, bisher aber nur über Slash-Befehle. Die anklickbare Oberfläche ist der nächste Schritt.</p>
+    <p lang="en" style="margin:0"><strong>Status: Logbook works, UI missing.</strong> Recording, noting, tagging and rating <strong>work and are tested</strong> — 33 logic tests, all green — but so far only through slash commands. A clickable UI is the next step.</p>
+  </div>
+</div>
+<section class="huelle">
+  <h2 lang="de">Aufbau</h2><h2 lang="en">Structure</h2>
+  <p lang="de">Mehrere eigenst&auml;ndige Addons in einem Repository. Jedes Modul tr&auml;gt <code>## Dependencies: PugLog</code> und l&auml;sst sich <strong>einzeln abw&auml;hlen</strong> &ndash; wer es nicht braucht, hat seinen Quelltext nicht im Speicher.</p>
+  <p lang="en">Several standalone add-ons in one repository. Each module declares <code>## Dependencies: PugLog</code> and can be <strong>disabled individually</strong> &ndash; what you do not need is not loaded.</p>
+  <pre>PugLog/                     Kern  – Logbuch, Speicher, Fenster
+PugLog_LFGHighlighter/      Modul – Hinweis im Gruppenfinder
+PugLog_CommunityShare/      Modul – Teilen in fester Gruppe</pre>
+  <p lang="de">Der Kern kennt <strong>kein Modul namentlich</strong>. Er ruft nur Haken auf; wer sich angemeldet hat, wird gefragt. Ein Modul, das seine Voraussetzung nicht findet oder in einem Haken wirft, wird stillgelegt &ndash; nicht der Kern.</p>
+  <p lang="en">The core knows <strong>no module by name</strong>. It only calls hooks. A module that fails its check, or throws inside a hook, is disabled &ndash; the core is not.</p>
+</section>
+<section class="huelle">
+  <h2 lang="de">Was es tut</h2><h2 lang="en">What it does</h2>
+  <div class="raster">
+    <div class="karte">
+      <h4 lang="de">Erfasst wird am Ende</h4><h4 lang="en">Recorded at the end</h4>
+      <p lang="de">Bei abgeschlossenem Schlüsselstein, gewonnenem Bosskampf oder beim Auflösen der Gruppe. Wer beim Betreten erfasst, hält die fest, die gleich wieder gehen — und verpasst die, die nachrücken.</p><p lang="en">On a completed keystone, a won boss fight, or when the group breaks up. Recording on entry captures those who leave right away and misses those who join later.</p>
+    </div>
+    <div class="karte">
+      <h4 lang="de">Notiz, Merkmale, Bewertung</h4><h4 lang="en">Note, tags, rating</h4>
+      <p lang="de">Eine geleerte Notiz wird entfernt statt als Leertext behalten. Eine Bewertung außerhalb von 1–5 wird begrenzt, statt einen Wert zu speichern, den die Oberfläche nicht darstellen kann.</p><p lang="en">An emptied note is removed rather than kept as empty text. A rating outside 1–5 is clamped instead of storing a value the UI cannot render.</p>
+    </div>
+    <div class="karte">
+      <h4 lang="de">Eine Grenze, von Anfang an</h4><h4 lang="en">A limit, from the start</h4>
+      <p lang="de">Je Person höchstens 25 Begegnungen — die Gesamtzahl bleibt trotzdem richtig. Die gespeicherte Datei wird bei jedem Ausloggen vollständig geschrieben.</p><p lang="en">At most 25 encounters per person — the total count stays correct regardless. The saved file is rewritten in full on every logout.</p>
+    </div>
+  </div>
+</section>
+<section class="huelle">
+  <h2 lang="de">Befehle</h2><h2 lang="en">Commands</h2>
+  <table><thead><tr>
+    <th lang="de">Befehl</th><th lang="en">Command</th>
+    <th lang="de">Wirkung</th><th lang="en">Effect</th>
+  </tr></thead><tbody>
+    <tr><td><code>/pug</code></td><td lang="de">Das Buch öffnen</td><td lang="en">Open the book</td></tr>
+    <tr><td><code>/pug note &lt;Name&gt; &lt;Text&gt;</code></td><td lang="de">Notiz setzen (leer = entfernen)</td><td lang="en">Set a note (empty = remove)</td></tr>
+    <tr><td><code>/pug tag &lt;Name&gt; &lt;Merkmal&gt;</code></td><td lang="de">Merkmal an- oder abschalten</td><td lang="en">Toggle a tag</td></tr>
+    <tr><td><code>/pug rate &lt;Name&gt; 1-5</code></td><td lang="de">Bewerten (ohne Zahl = entfernen)</td><td lang="en">Rate (no number = remove)</td></tr>
+    <tr><td><code>/pug doctor</code></td><td lang="de">Selbstdiagnose</td><td lang="en">Self-check</td></tr>
+  </tbody></table>
+</section>
+<section class="huelle">
+  <h2 lang="de">Was es <em>nicht</em> kann</h2><h2 lang="en">What it can<em>not</em> do</h2>
+  <p lang="de">Ehrlichkeit an dieser Stelle ist wichtiger als eine vollst&auml;ndig aussehende Funktionsliste.</p>
+  <p lang="en">Being honest here matters more than a feature list that looks complete.</p>
+  <ul class="klar">
+    <li lang="de"><strong>Es bewertet niemanden von selbst.</strong> Ein Addon, das aus Kampfdaten „guter Spieler“ ableitet, misst in Wahrheit Ausrüstung und Tagesform. Wer bewertet, tut das selbst — dann weiß er auch, was er gemeint hat.</li>
+    <li lang="en"><strong>It never rates anyone automatically.</strong> An add-on deriving “good player” from combat data really measures gear and daily form. Whoever rates, rates themselves — and then knows what they meant.</li>
+    <li lang="de"><strong>Es sortiert keine Bewerber.</strong> Der Gruppenfinder ist geschützter Bereich. Das Modul <em>zeigt</em> einen Hinweis; entschieden wird vom Menschen.</li>
+    <li lang="en"><strong>It does not sort applicants.</strong> The group finder is protected. The module <em>displays</em> a hint; the decision stays with the person.</li>
+    <li lang="de"><strong>Freitext wird nie geteilt.</strong> Eine Notiz ist für einen selbst geschrieben, in einer Sprache, die nur für einen selbst gemeint war. Geteilt werden — wenn überhaupt — Merkmale und Bewertung.</li>
+    <li lang="en"><strong>Free text is never shared.</strong> A note is written for yourself, in wording meant only for yourself. What may be shared — if anything — are tags and a rating.</li>
+    <li lang="de"><strong>Es führt keine öffentliche Liste.</strong> Es gibt keinen Weg, aus diesem Addon heraus eine Sammlung von Namen ins Netz zu stellen — und den soll es auch nicht geben.</li>
+    <li lang="en"><strong>It keeps no public list.</strong> There is no way to publish a collection of names from this add-on — and there should not be one.</li>
+    <li lang="de"><strong>Umbenennungen kann es nicht nachvollziehen.</strong> Der Schlüssel ist Name-Realm; nach einem Transfer ist ein Eintrag verwaist. Nicht lösbar, nur aushaltbar.</li>
+    <li lang="en"><strong>It cannot follow renames.</strong> The key is name-realm; after a transfer an entry is orphaned. Not solvable, only bearable.</li>
+  </ul>
+</section>
+<section class="huelle">
+  <h2 lang="de">Entwickeln</h2><h2 lang="en">Development</h2>
+  <pre>tools/junction.cmd    <span style="color:var(--ink-leise)"># verbindet alle Addon-Ordner mit dem AddOns-Verzeichnis</span>
+./tools/test.sh       <span style="color:var(--ink-leise)"># Syntax, .toc-Abgleich und Logiktests (baut sich Lua 5.1)</span></pre>
+  <p lang="de">Die Tests laufen <strong>ohne WoW</strong>: Die Spielumgebung wird so weit nachgebaut, wie der Kern sie anfasst. Geprüft werden vor allem die Stellen, an denen ein Fehler erst Monate später auffällt: Bewertungsgrenzen, das Umschalten von Merkmalen und die Verdrängung alter Begegnungen.</p>
+  <p lang="en">Tests run <strong>without WoW</strong>: the game environment is stubbed out as far as the core touches it. The tests focus on places where a bug only surfaces months later: rating limits, tag toggling, and the eviction of old encounters.</p>
+</section>
+<footer class="fuss huelle">
+  <p lang="de">MIT-Lizenz &middot; Basti2405 &middot; Diese Seite geh&ouml;rt zum Repository und wird aus <code>docs/</code> ausgeliefert.</p>
+  <p lang="en">MIT licence &middot; Basti2405 &middot; This page lives in the repository and is served from <code>docs/</code>.</p>
+</footer>
+</main>
+<script>
+// Sprachumschalter. Ohne JavaScript bleibt die Seite auf Deutsch - sie ist
+// dann vollstaendig lesbar, nur eben einsprachig.
+document.querySelectorAll('.sprache button').forEach(function (knopf) {
+  knopf.addEventListener('click', function () {
+    document.documentElement.setAttribute('data-lang', knopf.dataset.setzt);
+  });
+});
+</script>
+</body>
+</html>

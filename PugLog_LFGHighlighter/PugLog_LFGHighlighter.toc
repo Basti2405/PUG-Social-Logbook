@@ -1,0 +1,18 @@
+## Interface: 120100
+
+## Title: Pug Log |cffb98cff[LFG Highlighter]|r
+## Notes: Marks applicants in the group finder you already have an entry for.
+## Notes-deDE: Hebt im Gruppenfinder die Bewerber hervor, zu denen bereits ein Eintrag vorliegt.
+## Author: Basti2405
+## Version: 0.1.0
+## IconTexture: Interface\Icons\INV_Misc_GroupLooking
+
+# Harte Voraussetzung: ohne das Buch gibt es nichts hervorzuheben.
+## Dependencies: PugLog
+
+## X-License: MIT
+## X-Category: Group
+
+Locales\enUS.lua
+Locales\deDE.lua
+Modul.lua
